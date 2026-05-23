@@ -1,0 +1,158 @@
+/* Base Styles */
+.body {
+    background-color: black;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+/* Ensure all sizing calculations include padding */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Header Container */
+.container {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.container h1 {
+    font-size: clamp(2rem, 5vw, 4rem); /* Dynamic text scaling */
+    margin-bottom: 10px;
+
+}
+
+.container h3 {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    color: #b3b3b3;
+    font-weight: normal;
+    margin-top: 0;
+}
+
+/* Main Text Area Layout */
+.txt_area {
+    background-color: rgb(37, 35, 35);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row; /* Default layout side-by-side */
+    flex: 1;             /* Grows to fill available vertical space */
+    width: 100%;
+    max-width: 1400px;   /* Prevents it from stretching too wide on huge monitors */
+    margin: 0 auto;      /* Centers container horizontally */
+    padding: 10px;
+}
+
+.left, .right {
+    flex: 1;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 400px; /* Ensures a reasonable minimum size for content areas */
+}
+
+.left h2, .right h2 {
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+/* Responsive Textareas */
+#input_text, #summary_text {
+    width: 100%;       /* Fills up the parent flex container width */
+    height: 350px;      /* Fallback static height */
+    min-height: 250px;  /* Minimum size safety check */
+    flex-grow: 1;       /* Stretches to fill container box height dynamically */
+    padding: 15px;
+    color: white;
+    background-color: rgb(25, 24, 24);
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid #444;
+    resize: vertical;   /* Allows vertical manual resizing safely */
+}
+
+/* Control Buttons Section */
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;         /* Cleaner alternative to margins for spacing layout elements */
+    margin: 40px auto 20px auto;
+    width: 100%;
+}
+
+.buttons button {
+    font-size: clamp(1.2rem, 2vw, 1.8rem);
+    padding: 10px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s, color 0.2s;
+}
+
+#summarize_btn {
+    background-color: white;
+    color: rgb(0, 0, 0);
+    border: 1px solid white;
+}
+
+#summarize_btn:hover {
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+#summarize_btn:active, #clear_btn:active {
+    transform: scale(0.95);
+}
+
+#clear_btn {
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+}
+
+#clear_btn:hover {
+    background-color: rgb(255, 0, 0);
+    color: white;
+    border-color: rgb(255, 0, 0);
+}
+
+/* --- Responsive Media Queries --- */
+
+/* Targets Tablets & Phones (Flips layouts vertically) */
+@media (max-width: 900px) {
+    .txt_area {
+        flex-direction: column; /* Stack input top and output bottom */
+    }
+
+    #input_text, #summary_text {
+        height: 250px; /* Reduces footprint size for tight displays */
+    }
+    
+    .buttons {
+        margin-top: 20px;
+    }
+}
+
+/* Targets Small Mobile Interfaces specifically */
+@media (max-width: 480px) {
+    .body {
+        padding: 10px;
+    }
+    
+    .buttons {
+        flex-direction: column; /* Stack buttons vertically on small devices */
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .buttons button {
+        width: 100%;
+    }
+}
